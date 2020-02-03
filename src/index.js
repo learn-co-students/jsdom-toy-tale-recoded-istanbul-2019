@@ -13,6 +13,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
     }
   })
 })
+
+//first
 document.addEventListener("DOMContentLoaded", addToys);
 
 function addToys() {
@@ -49,10 +51,44 @@ function addToys() {
     }
     } )
 }
-
+//second
 let bBtn=document.getElementsById('new-toy-btn');
 bBtn.addEventListener('click',function(){
-  let x=document.getElementsById('')
-}
+let x=document.getElementsByClassName('input-text');
+let name1=x[0].value;
+let image1=x[1].value;
 
-);
+ fetch( 'http://localhost:3000/toys', {
+      method: "POST", //post
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify( {
+       "name": [name1],
+       "image": [image1],
+       "likes": 0
+      } )
+    } );
+});
+//third
+function like(){
+  let toyss=document.getElementsByClassName('like-btn');
+  for(let x of toyss)
+  {
+    x.addEventListener('click', fetch( `http://localhost:3000/toys/${toy.Id}`, {
+      method: "POST", //post
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify( {
+       
+       "likes": [likes++]
+      } )
+    } ) //end fetch function
+    ); //end event listener
+  }//end for
+  
+}//end like function
+
