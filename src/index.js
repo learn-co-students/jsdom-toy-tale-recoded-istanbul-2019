@@ -1,49 +1,3 @@
-let addToy = false;
-
-document.addEventListener("DOMContentLoaded", () => {
-  const addBtn = document.querySelector("#new-toy-btn");
-  const toyForm = document.querySelector(".container");
-  addBtn.addEventListener("click", () => {
-    // hide & seek with the form
-    addToy = !addToy;
-    if (addToy) {
-      toyForm.style.display = "block";
-    } else {
-      toyForm.style.display = "none";
-    }
-  });
-});
-
-// const imgUrl = "https://dog.ceo/api/breeds/image/random/4";
-// const imgCon = document.getElementById("dog-image-container");
-// let newIm = document.createElement("img");
-
-// imgCon.appendChild(newIm);
-// document.querySelector("img").id ="image";
-
-// fetch(imgUrl).then(function(response){
-// 	return response.json()
-// 	.then(function(json){
-// 		document.getElementById("image").src=json.message[0];
-
-// 	})
-// })
-
-// let newLi = document.createElement("li");
-// // document.getElementById("dog-breeds")
-// // document.querySelector
-
-// const breedUrl = 'https://dog.ceo/api/breeds/list/all'
-
-// fetch(breedUrl).then(function(response){
-// 	return response.json()
-// 	.then(function(json){
-// 		aI = json;
-// 		for (let i=0;i<json.length;i++){
-//             document.querySelector("#dog-breeds").appendChild(newLi).innerText=json.message[i];
-// }
-// 	})
-// })
 
 let toyCol = document.getElementById("toy-collection");
 
@@ -59,12 +13,7 @@ fetch("http://localhost:3000/toys", {
 		"Content-Type": "application/json",
 		Accept: "application/json"
 	},
-	// body:`{
-	// 	"name":"Ali",
-	// 	"image":"ll",
-	// 	"likes":0
-
-	// }`
+	
 })
 	.then(function (response) {
 		return response.json();
@@ -72,12 +21,14 @@ fetch("http://localhost:3000/toys", {
 	.then(function (json) {
 		obj = json;
 		for (let i = 0; i < obj.length; i++) {
-			console.log(obj[i])
 			let newDiv = document.createElement("div");
 			let header2 = document.createElement("h2");
 			let img = document.createElement("img");
 			let para = document.createElement("p");
 			let btn = document.createElement("button");
+			btn.className="btnLike";
+			para.className="numberOfLike"
+
 			newDiv.className = "card";
 			toyCol.appendChild(newDiv);
 
@@ -91,6 +42,35 @@ fetch("http://localhost:3000/toys", {
 			para.innerText = `${obj[i].likes} likes`;
 			btn.innerHTML = `Like It`;
 
+
+			btn.onclick = function(event){
+				event.preventDefault();
+				fetch(`http://localhost:3000/toys/${obj[i].id}`,{
+					method:"PATCH",
+					headers: 
+					{
+					"Content-Type": "application/json",
+					Accept: "application/json"
+					},
+					
+					body:JSON.stringify({
+					"likes":`${obj[i].likes}`
+					})
+				})
+					.then(function(res){
+						return res.json()
+					})
+					.then(function(obja){
+						console.log(obja);
+						
+						para.innerHTML =`${obj[i].likes++} likes`
+						
+					})
+			console.log("Nothing happens")
+			}
+			
+
+
 		}
 	});
 
@@ -103,7 +83,7 @@ addBtn.onclick = function(){
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
-			"Accept": "application/json"
+			Accept: "application/json"
 		},
 		body: JSON.stringify({
 			"name": "Jessie",
@@ -113,11 +93,14 @@ addBtn.onclick = function(){
 	}).then(function(response){
 		return response.json();
 	}).then(function(json){
+		console.log(json);
 		let newDiv = document.createElement("div");
 		let header2 = document.createElement("h2");
 		let img = document.createElement("img");
 		let para = document.createElement("p");
 		let btn = document.createElement("button");
+		btn.className="btnLike";
+		para.className="numberOfLike"
 		newDiv.className = "card";
 		toyCol.appendChild(newDiv);
 
@@ -126,9 +109,17 @@ addBtn.onclick = function(){
 		newDiv.appendChild(para);
 		newDiv.appendChild(btn);
 
-		header2.innerHTML = `${json[0].name}`;
-		img.src = `${json[0].image}`;
-		para.innerText = `${json[0].likes} likes`;
+		header2.innerHTML = `${json.name}`;
+		img.src = `${json.image}`;
+		para.innerText = `${json.likes} likes`;
 		btn.innerHTML = `Like It`;
+
+
+		
 	})
 }
+
+
+
+
+
