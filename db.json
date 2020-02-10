@@ -47,6 +47,24 @@
       "name": "Little Green Men",
       "image": "http://www.pngmart.com/files/3/Toy-Story-Alien-PNG-File.png",
       "likes": -2
+    },
+    {
+      "name": "Jessie",
+      "image": "https://vignette.wikia.nocookie.net/p__/images/8/88/Jessie_Toy_Story_3.png/revision/latest?cb=20161023024601&path-prefix=protagonist",
+      "likes": 0,
+      "id": 9
+    },
+    {
+      "name": "Rola",
+      "image": "https://thumbnail.imgbin.com/21/13/8/imgbin-rola-kos-facial-muscovado-skin-others-G2dcF0B2KSnLN1WWEr7fBycnU_t.jpg",
+      "likes": 0,
+      "id": 10
+    },
+    {
+      "name": "NA3OM",
+      "image": "https://www.pngkit.com/png/detail/844-8444970_barbies-from-the-superstar-era-superstar-barbie-doll.png",
+      "likes": 0,
+      "id": 11
     }
   ]
 }
