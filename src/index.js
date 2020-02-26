@@ -50,6 +50,22 @@ function addingToys(json) {
     collection.appendChild(button);
     div.classList.add('like-btn');
     p.innerHTML = "Like";
+    button.addEventListener('click', () => {
+      let urlString = `http://localhost:3000/toys/${toy.id}`;
+      let likesNumber = Number(p.innerHTML);
+      likesNumber++;
+      fetch(urlString, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          "likes": likesNumber
+        })
+      })
+      p.innerHTML = `${likesNumber}`;
+    });
   }
 }
 
