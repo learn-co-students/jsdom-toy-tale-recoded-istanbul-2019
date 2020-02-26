@@ -17,7 +17,22 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
 /** Fetch Andy's Toys */
 
-document.addEventListener("DOMContentLoaded", function() { fetchToys(); })
+document.addEventListener("DOMContentLoaded", function() { 
+  fetchToys(); 
+
+  let submit = document.querySelector('.submit');
+
+  submit.addEventListener('click', (e) => {
+  let formData = {
+    name: document.querySelector('[name=name]').value,
+    image: document.querySelector('[name=image]').value,
+    likes: 0
+  }
+
+  save(formData);
+  e.preventDefault();
+})
+})
 
 function fetchToys() {
     fetch("http://localhost:3000/toys")
@@ -49,49 +64,49 @@ function addingToys(json) {
     let button = document.createElement("button");
     collection.appendChild(button);
     div.classList.add('like-btn');
-    p.innerHTML = "Like";
-    button.addEventListener('click', () => {
-      let urlString = `http://localhost:3000/toys/${toy.id}`;
-      let likesNumber = Number(p.innerHTML);
-      likesNumber++;
-      fetch(urlString, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify({
-          "likes": likesNumber
-        })
-      })
-      p.innerHTML = `${likesNumber}`;
+    button.innerHTML = "Like";
+    button.dataset.likes = toy.likes;
+
+    button.addEventListener('click', () => { 
+      liked(toy.id, +button.dataset.likes + 1).then(newtoy => {
+        button.dataset.likes = newtoy.likes;
+        p.innerHTML = `${newtoy.likes} likes`;
+      }) 
+    
     });
   }
 }
 
 /** Add a New Toy */
 
-let inputs = document.querySelectorAll('input');
-
-inputs[2].addEventListener('click', () => {
-  let formData = {
-    name: inputs[0].value,
-    image: inputs[1].value,
-    likes: 0
-  }
-
+function save(formData){
+  
   let configObj = {
     method: "POST",
     headers: {
-    "Content-Type": "application/json",
-    "Accept": "application/json"
+      "Content-Type": "application/json"
     },
     body: JSON.stringify(formData)
   }
 
   fetch("http://localhost:3000/toys", configObj)
+}
 
-})
+/** Increase Likes */
+
+function liked(toyId, likes) {
+  let configObj = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({likes})
+  }
+
+  return fetch(`http://localhost:3000/toys/${toyId}`, configObj)
+        .then(response => response.json())
+}
+
 
 
 
