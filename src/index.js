@@ -35,22 +35,47 @@ function addingToys(json) {
     let h2 = document.createElement('h2');
     collection.appendChild(h2);   
     h2.innerHTML = toy.name;
-
+    console.log(toy.name);
+    
     let img = document.createElement("img");
-    container.appendChild(img);   
+   collection.appendChild(img);   
     img.src = toy.image;
     img.classList.add('toy-avatar');
 
     let p = document.createElement("p");
-    container.appendChild(p); 
+    collection.appendChild(p); 
     p.innerHTML = `${toy.likes} likes`
 
     let button = document.createElement("button");
-    container.appendChild(button);
+    collection.appendChild(button);
     div.classList.add('like-btn');
     p.innerHTML = "Like";
   }
 }
+
+/** Add a New Toy */
+
+let inputs = document.querySelectorAll('input');
+
+inputs[2].addEventListener('click', () => {
+  let formData = {
+    name: inputs[0].value,
+    image: inputs[1].value,
+    likes: 0
+  }
+
+  let configObj = {
+    method: "POST",
+    headers: {
+    "Content-Type": "application/json",
+    "Accept": "application/json"
+    },
+    body: JSON.stringify(formData)
+  }
+
+  fetch("http://localhost:3000/toys", configObj)
+
+})
 
 
 
