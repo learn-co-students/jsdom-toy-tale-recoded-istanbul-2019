@@ -13,3 +13,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+//document.addEventListener('DOMContentLoaded', () => { 
+
+    fetch ("http://localhost:3000/toys")
+    .then(response => response.json())
+    .then ((data) => {
+
+      let div=document.createElement('card'); 
+      div.appendChild(div)
+      let name=document.createElement('h2');
+      div.appendChild(name);
+      let img = document.createElement('img')
+      div.appendChild(img)
+      let p= document.createElement('p')
+      div.appendChild(p)
+      let btn=document.createElement('button');
+      
+
+    
+    
+    
+    }
+    })
+
+
+
