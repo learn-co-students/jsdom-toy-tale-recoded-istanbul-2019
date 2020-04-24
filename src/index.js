@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return response.json();
     })
     .then(function(objectPost){
-      console.log(objectPost)
+      console.log("objectPost")
       
     })
 
@@ -66,11 +66,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // The POST fetch
   let likeBtn = document.querySelector('.like-btn');
-  if (likeBtn) {
-    likeBtn.addEventListener('click', function(){
-      console.log('baba')
-    })
-  }
+
+  // if (likeBtn) {
+  //   likeBtn.addEventListener('click', function(){
+  //     console.log('baba')
+  //   })
+  // }
   
 
 
