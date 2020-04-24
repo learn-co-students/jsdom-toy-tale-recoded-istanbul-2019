@@ -53,9 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
         index = tab.indexOf(btnone.textContent);
         index++;
-        console.log(index);
         currentlike++;
-
         addlikes(currentlike, index).catch(err => console.error(err));
         return false;
       });
@@ -83,10 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
       })
     };//end of postInfo
     const response = await fetch("http://localhost:3000/toys", postInfo);
-    const result = await response.json();
-    result.forEach(item => {
-      console.log(item);
-    })//end of result foreach
+    const result = await response.json()
       .catch(err => console.error(err));
     return false;
   }//end of async addtoys
