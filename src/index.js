@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let tab = [], index;
     getBTN.forEach(btnone => {
       tab.push(btnone.textContent);
-      let currentlike = btnone.children[2].innerText.slice(0, btnone.children[2].innerText.indexOf(' Likes'));
+      let currentlike = btnone.querySelector("p").innerText.slice(0, btnone.querySelector("p").innerText.indexOf(' Likes'));
       //when each div.card is clicked
       btnone.querySelector(".like-btn").addEventListener("click", (e) => {
         e.preventDefault();
