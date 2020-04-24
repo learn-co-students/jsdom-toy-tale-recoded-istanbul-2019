@@ -32,8 +32,9 @@ document.addEventListener("DOMContentLoaded", () => {
       pp.appendChild(pptext);
       let bbtext = document.createTextNode("Like <3");
       let bb = create('button')
-      bb.appendChild(bbtext);
       bb.setAttribute("class", "like-btn");
+      bb.setAttribute("type", "button");
+      bb.appendChild(bbtext);
       dd.appendChild(hh);
       dd.appendChild(ii);
       dd.appendChild(pp);
@@ -42,7 +43,10 @@ document.addEventListener("DOMContentLoaded", () => {
       //end of adding div.card
     })//end of result foreach
 
-    document.querySelector('.add-toy-form').onclick = (e) => e.preventDefault();
+    document.querySelector('.add-toy-form').onclick = (e) => {
+      e.preventDefault();
+      return false;
+    };
     let getBTN = document.querySelectorAll(".card");
     let tab = [], index;
     getBTN.forEach(btnone => {
