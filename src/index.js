@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       toyForm.style.display = "none";
     }
+    return false;
   });
   getTOYS().catch(err => console.error(err));
   async function getTOYS() {
@@ -39,7 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
       dd.appendChild(bb);
       document.querySelector('#toy-collection').appendChild(dd);
       //end of adding div.card
-
     })//end of result foreach
 
     document.querySelector('.add-toy-form').onclick = (e) => e.preventDefault();
@@ -49,15 +49,18 @@ document.addEventListener("DOMContentLoaded", () => {
       tab.push(btnone.textContent);
       let currentlike = btnone.children[2].innerText.slice(0, btnone.children[2].innerText.indexOf(' Likes'));
       //when each div.card is clicked
-      btnone.children[3].addEventListener("click", (e) => {
+      btnone.querySelector(".like-btn").addEventListener("click", (e) => {
         e.preventDefault();
         index = tab.indexOf(btnone.textContent);
         index++;
         console.log(index);
         currentlike++;
+
         addlikes(currentlike, index).catch(err => console.error(err));
+        return false;
       });
     })
+    return false;
   }//end of async gettoys
   document.querySelector(".submit").addEventListener("click", (e) => {
     e.preventDefault();
@@ -85,6 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log(item);
     })//end of result foreach
       .catch(err => console.error(err));
+    return false;
   }//end of async addtoys
 
   async function addlikes(currentlike, index) {
@@ -100,5 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };//end of postInfo
     const response = await fetch("http://localhost:3000/toys/" + index, postInfo);
     const result = await response.json()
+    return false;
   }//end of async addlikes
+  return false;
 })//end of domload
