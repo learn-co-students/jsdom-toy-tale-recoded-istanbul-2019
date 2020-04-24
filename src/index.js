@@ -52,6 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
       btnone.children[3].addEventListener("click", (e) => {
         e.preventDefault();
         index = tab.indexOf(btnone.textContent);
+        index++;
         console.log(index);
         currentlike++;
         addlikes(currentlike, index).catch(err => console.error(err));
