@@ -47,6 +47,24 @@
       "name": "Little Green Men",
       "image": "http://www.pngmart.com/files/3/Toy-Story-Alien-PNG-File.png",
       "likes": -2
+    },
+    {
+      "name": "omar ",
+      "image": "https://www.papaganoyuncak.com/Uploads/UrunResimleri/buyuk/toy-story-4-konusan-figurler---buzz--5808.jpg",
+      "likes": 0,
+      "id": 12
+    },
+    {
+      "name": "woody",
+      "image": "https://www.papaganoyuncak.com/Uploads/UrunResimleri/buyuk/toy-story-4-konusan-figurler---buzz--5808.jpg",
+      "likes": 0,
+      "id": 13
+    },
+    {
+      "name": "woody",
+      "image": "https://www.papaganoyuncak.com/Uploads/UrunResimleri/buyuk/toy-story-4-konusan-figurler---buzz--5808.jpg",
+      "likes": 0,
+      "id": 14
     }
   ]
 }
